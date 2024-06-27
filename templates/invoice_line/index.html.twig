@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invoice Lines{% endblock %}
+
+{% block body %}
+    <h1>Invoice Lines</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>VAT Amount</th>
+                <th>Total with VAT</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for invoice_line in invoice_lines %}
+                <tr>
+                    <td>{{ invoice_line.id }}</td>
+                    <td>{{ invoice_line.description }}</td>
+                    <td>{{ invoice_line.quantity }}</td>
+                    <td>{{ invoice_line.amount }}</td>
+                    <td>{{ invoice_line.vatAmount }}</td>
+                    <td>{{ invoice_line.totalWithVat }}</td>
+                    <td>
+                        <a href="{{ path('invoice_line_show', {'id': invoice_line.id}) }}">show</a>
+                        <a href="{{ path('invoice_line_edit', {'id': invoice_line.id}) }}">edit</a>
+                        <form method="post" action="{{ path('invoice_line_delete', {'id': invoice_line.id}) }}" style="display: inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ invoice_line.id) }}">
+                            <button class="btn btn-danger btn-sm">delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('invoice_line_new') }}" class="btn btn-primary">Create new</a>
+{% endblock %}

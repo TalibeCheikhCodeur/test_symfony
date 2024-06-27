@@ -1,5 +1,43 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+# config/routes.yaml
+
+invoice_index:
+    path: /
+    controller: App\Controller\InvoiceController::index
+
+invoice_new:
+    path: /invoice/new
+    controller: App\Controller\InvoiceController::new
+
+invoice_show:
+    path: /invoice/{id}
+    controller: App\Controller\InvoiceController::show
+
+invoice_edit:
+    path: /invoice/{id}/edit
+    controller: App\Controller\InvoiceController::edit
+
+invoice_delete:
+    path: /invoice/{id}
+    controller: App\Controller\InvoiceController::delete
+    methods: POST
+
+invoice_line_index:
+    path: /invoice-line
+    controller: App\Controller\InvoiceLineController::index
+
+invoice_line_new:
+    path: /invoice-line/new
+    controller: App\Controller\InvoiceLineController::new
+
+invoice_line_show:
+    path: /invoice-line/{id}
+    controller: App\Controller\InvoiceLineController::show
+
+invoice_line_edit:
+    path: /invoice-line/{id}/edit
+    controller: App\Controller\InvoiceLineController::edit
+
+invoice_line_delete:
+    path: /invoice-line/{id}
+    controller: App\Controller\InvoiceLineController::delete
+    methods: POST

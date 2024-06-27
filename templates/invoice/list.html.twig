@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invoices{% endblock %}
+
+{% block body %}
+<h1>Invoices</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Invoice Date</th>
+            <th>Invoice Number</th>
+            <th>Customer ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.id }}</td>
+                <td>{{ invoice.invoiceDate|date('Y-m-d') }}</td>
+                <td>{{ invoice.invoiceNumber }}</td>
+                <td>{{ invoice.customerId }}</td>
+                <td>
+                    <a href="{{ path('invoice_show', { 'id': invoice.id }) }}">show</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('invoice_new') }}">Create new</a>
+{% endblock %}
